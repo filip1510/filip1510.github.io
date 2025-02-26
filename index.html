@@ -1,21 +1,31 @@
 <!DOCTYPE html>
+<html>
+<head>
+    <title>Pico 2W LED Control</title>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+    <h1>Pico 2W LED Control</h1>
+    <button onclick="setLED('ON')">Turn ON</button>
+    <button onclick="setLED('OFF')">Turn OFF</button>
 
-<html lang="en">
-	<head>
-	<meta charset="utf-8">
-	<title>Filip Marczak</title>
-	<style></style>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	
-	</head>
-	<body>
-	<div id="NavBar">
-	</div>
-	
-	<h1> Welcome to the website, it's still in development! </h1>
-	
-	</body>
-	<footer>
-	
-	</footer>
+    <script>
+        const ADAFRUIT_IO_USERNAME = "filip1510";
+        const ADAFRUIT_IO_KEY = "raspberry-pi-pico-2w";
+        const FEED_NAME = "raspberry-pi-pico-2w";
+
+        const client = mqtt.connect(`wss://io.adafruit.com:443/mqtt/`, {
+            username: ADAFRUIT_IO_USERNAME,
+            password: ADAFRUIT_IO_KEY
+        });
+
+        function setLED(state) {
+            client.publish(`${ADAFRUIT_IO_USERNAME}/feeds/${FEED_NAME}`, state);
+        }
+
+        client.on("connect", function () {
+            console.log("Connected to Adafruit IO!");
+        });
+    </script>
+</body>
 </html>
