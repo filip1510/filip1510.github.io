@@ -1,31 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Pico 2W LED Control</title>
-    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
-</head>
-<body>
-    <h1>Pico 2W LED Control</h1>
-    <button onclick="setLED('ON')">Turn ON</button>
-    <button onclick="setLED('OFF')">Turn OFF</button>
-
-    <script>
-        const ADAFRUIT_IO_USERNAME = "filip1510";
-        const ADAFRUIT_IO_KEY = "raspberry-pi-pico-2w";
-        const FEED_NAME = "raspberry-pi-pico-2w";
-
-        const client = mqtt.connect(`wss://io.adafruit.com:443/mqtt/`, {
-            username: ADAFRUIT_IO_USERNAME,
-            password: ADAFRUIT_IO_KEY
-        });
-
-        function setLED(state) {
-            client.publish(`${ADAFRUIT_IO_USERNAME}/feeds/${FEED_NAME}`, state);
-        }
-
-        client.on("connect", function () {
-            console.log("Connected to Adafruit IO!");
-        });
-    </script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/filip1510.github.io/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CleanRoom Operating Dashboard</title>
+    <script type="module" crossorigin src="/filip1510.github.io/assets/index-DMaoaKDV.js"></script>
+    <link rel="stylesheet" crossorigin href="/filip1510.github.io/assets/index-DQ3P1g1z.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
